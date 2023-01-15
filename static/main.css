@@ -65,6 +65,14 @@ input[type="submit"] {
   margin-top: 40px;
 }
 footer {
-  font-size: 12px;
-  padding-top: 10rem;
+  width: 100%; /* will make the footer element as wide as the container */
+  text-align: center; /* this is optional, but it will center any text inside the footer element */
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 1rem;
+  font-size: 0.7rem;
+}
+.result {
+  text-align: center;
+  padding: 1rem;
 }
