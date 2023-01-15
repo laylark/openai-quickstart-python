@@ -15,7 +15,9 @@ def index():
             model="text-davinci-003",
             prompt=generate_prompt(topic),
             temperature=0,
+            max_tokens=200,
         )
+        print(response)
         print(response.choices)
         return redirect(url_for("index", result=response.choices[0].text))
 
@@ -27,10 +29,11 @@ def generate_prompt(topic):
     return """Write a short summary of the topic with humor.
 
 Topic: Legos
-Summary: Legos: Where imagination and plastic unite to create small-scale architectural masterpieces or that one thing you stepped on in the middle of the night.
+Summary: Legos: Where imagination and plastic unite to create small-scale architectural masterpieces or that one thing you stepped 
+on in the middle of the night.
 Topic: Toilets
 Summary: Toilets: The porcelain throne where we leave our problems behind, and our poop in front of.
 Topic: {}
-Summary:""".format(
+Summary: """.format(
         topic.capitalize()
     )
