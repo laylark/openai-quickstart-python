@@ -1,3 +1,4 @@
+import base64
 import os
 
 import openai
@@ -17,11 +18,13 @@ def index():
             temperature=0,
             max_tokens=200,
         )
-        print(response)
-        print(response.choices)
-        return redirect(url_for("index", result=response.choices[0].text))
+        result = base64.urlsafe_b64encode(response.choices[0].text.encode())
+        return redirect(url_for("index", result=result))
 
     result = request.args.get("result")
+    if result != None:
+        result = base64.urlsafe_b64decode(result).decode()
+
     return render_template("index.html", result=result)
 
 
